@@ -157,7 +157,7 @@ namespace DarthBane.Helpers
             {
                 return new Action(delegate
                 {
-                    if ((DateTime.Now.Subtract(datLGC).TotalSeconds >= RehookFreq || (Process.GetCurrentProcess().PrivateMemorySize64 - RehookLastMemSize >= 50000000)) && !Me.IsCasting)
+                    if ((/*DateTime.Now.Subtract(datLGC).TotalSeconds >= RehookFreq || */(Process.GetCurrentProcess().PrivateMemorySize64 - RehookLastMemSize >= 50000000)) && !Me.IsCasting)
                     {
                         //if (DateTime.Now.Subtract(datLGC).TotalSeconds >= (RehookFreq + 10))
                         try

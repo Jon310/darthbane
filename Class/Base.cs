@@ -94,7 +94,7 @@ namespace DarthBane.Class
                        new SwitchArgument<CharacterClass>(CharacterClass.Smuggler,
                            new PrioritySelector(
                                CloseDistance(Distance.Ranged),
-                               Spell.Cast("Crouch"),
+                               Spell.Cast("Crouch", ret => !Me.HasBuff("Crouch")),
                                Spell.Cast("Dirty Kick", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Flash Grenade", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Thermal Grenade", ret => ShouldAOE(3, Distance.MeleeAoE)),
