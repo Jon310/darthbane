@@ -98,7 +98,7 @@ namespace DarthBane.Class
                                Spell.Cast("Dirty Kick", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Flash Grenade", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Thermal Grenade", ret => ShouldAOE(3, Distance.MeleeAoE)),
-                               Spell.Cast("Vital Shot", ret => !Me.CurrentTarget.HasDebuff("Poisoned (Tech)")),
+                               Spell.Cast("Vital Shot", ret => !Me.CurrentTarget.HasDebuff("Bleeding (Tech)")),
                                Spell.Cast("Blaster Whip"),
                                Spell.Cast("Sabotage Charge"),
                                Spell.Cast("Charged Burst"),
