@@ -51,6 +51,9 @@
     <Compile Include="Class\Commando\AssaultSpecialist.cs" />
     <Compile Include="Class\Commando\CombatMedic.cs" />
     <Compile Include="Class\Commando\Gunnery.cs" />
+    <Compile Include="Class\Gunslinger\DirtyFighting.cs" />
+    <Compile Include="Class\Gunslinger\Saboteur.cs" />
+    <Compile Include="Class\Gunslinger\Sharpshooter.cs" />
     <Compile Include="Class\Juggernaut\Immortal.cs" />
     <Compile Include="Class\Mercenary\Arsenal.cs" />
     <Compile Include="Class\Mercenary\Bodyguard.cs" />
@@ -73,7 +76,9 @@
     <Compile Include="Managers\HealingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Class\Scoundrel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
