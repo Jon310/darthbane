@@ -9,20 +9,9 @@ namespace DarthBane.Class
     {
         #region Overrides of RotationBase
 
-        public override string Revision
-        {
-            get { return ""; }
-        }
-
-        public override SWTorSpec KeySpec
-        {
-            get { return SWTorSpec.None; }
-        }
-
-        public override string Name
-        {
-            get { return "Basic by Ama, pindleskin"; } // Thanks guys, I didnt want to mess with lowbie stuff
-        }
+        public override string Name { get { return "Basic by Ama, pindleskin"; } }
+        public override SWTorSpec KeySpec { get { return SWTorSpec.None; } }
+        public override string Revision { get { return ""; } }
 
         public override Composite PreCombat
         {
@@ -95,6 +84,7 @@ namespace DarthBane.Class
                            new PrioritySelector(
                                CloseDistance(Distance.Ranged),
                                Spell.Cast("Crouch"),
+                               Spell.Cast("Escape"),
                                Spell.Cast("Dirty Kick", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Flash Grenade", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Thermal Grenade", ret => ShouldAOE(3, Distance.MeleeAoE)),

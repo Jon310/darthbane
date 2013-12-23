@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Buddy.BehaviorTree;
 using Buddy.Common;
 using Buddy.CommonBot;
 using Buddy.Swtor;
 using Buddy.Swtor.Objects;
-using Buddy.Navigation;
-using Buddywing;
-
 using System.Diagnostics;
 using System.Threading;
-using DarthBane.Managers;
-
 using Action = Buddy.BehaviorTree.Action;
 
 namespace DarthBane.Helpers
@@ -148,7 +139,6 @@ namespace DarthBane.Helpers
                 || (Me.Companion != null && !Me.Companion.IsDead && Me.Companion.HealthPercent < 100));
         }
 
-        private static int RehookFreq = 60;
         private static long RehookLastMemSize;
         private static DateTime datLGC;
         public static Composite HandleRest
@@ -157,9 +147,8 @@ namespace DarthBane.Helpers
             {
                 return new Action(delegate
                 {
-                    if ((/*DateTime.Now.Subtract(datLGC).TotalSeconds >= RehookFreq || */(Process.GetCurrentProcess().PrivateMemorySize64 - RehookLastMemSize >= 50000000)) && !Me.IsCasting)
+                    if (Process.GetCurrentProcess().PrivateMemorySize64 - RehookLastMemSize >= 50000000 && !Me.IsCasting)
                     {
-                        //if (DateTime.Now.Subtract(datLGC).TotalSeconds >= (RehookFreq + 10))
                         try
                         {
                             datLGC = DateTime.Now;

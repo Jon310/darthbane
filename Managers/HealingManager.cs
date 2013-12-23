@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using JetBrains.Annotations;
-using DarthBane;
 using DarthBane.Helpers;
 
 using Buddy.BehaviorTree;
-using Buddy.Common;
-using Buddy.CommonBot;
 using Buddy.Swtor;
 using Buddy.Swtor.Objects;
-using Buddy.Swtor.Objects.Containers;
-using Buddy.Navigation;
-using Buddywing;
-using Buddy.CommonBot.Settings;
 using Buddy.Common.Math;
 
 using Action = Buddy.BehaviorTree.Action;

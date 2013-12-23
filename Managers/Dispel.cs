@@ -6,7 +6,7 @@ namespace DarthBane.Managers
 {
     public static class Dispel
     {
-        public static Debuff[] DebuffList = {
+        private static Debuff[] DebuffList = {
                                             new Debuff("Crushing Affliction (Force)", 0),
                                             new Debuff("Crushing Affliction (All)", 0),
                                             new Debuff("Corrosive Slime", 0),
@@ -26,17 +26,17 @@ namespace DarthBane.Managers
             return false;
         }
 
-        public static bool HasDebuffCount(this TorCharacter p, string debuff, int stacks)
+        private static bool HasDebuffCount(this TorCharacter p, string debuff, int stacks)
         {
-            return !p.HasDebuff(debuff) ? false : p.Debuffs.Any(d => d.Name.Contains(debuff) && d.GetStacks() >= stacks);
+            return p.HasDebuff(debuff) && p.Debuffs.Any(d => d.Name.Contains(debuff) && d.GetStacks() >= stacks);
         }
     }
 
     
     public class Debuff
     {
-        public string Name;
-        public int Stacks;
+        public readonly string Name;
+        public readonly int Stacks;
 
         public Debuff(string _name, int _stacks)
         {

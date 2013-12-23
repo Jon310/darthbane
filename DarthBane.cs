@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
-using System.Windows.Forms;
-
 using Buddy.BehaviorTree;
 using Buddy.Common;
 using Buddy.CommonBot;
 using Buddy.Swtor;
 using Buddy.Swtor.Objects;
-using Buddy.Navigation;
-using Buddywing;
-using Buddy.CommonBot.Settings;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using DarthBane.Helpers;
-using JetBrains.Annotations;
 
 
 namespace DarthBane
