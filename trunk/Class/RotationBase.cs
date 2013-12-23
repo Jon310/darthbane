@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Buddy.BehaviorTree;
@@ -19,7 +18,7 @@ namespace DarthBane.Class
 {
     public abstract class RotationBase
     {
-        protected static Buddy.Swtor.Objects.TorPlayer Me { get { return BuddyTor.Me; } }
+        protected static TorPlayer Me { get { return BuddyTor.Me; } }
         protected static TorCharacter Pet { get { return Me.Companion; } }
         protected static TorCharacter Tank { get { return HealingManager.Tank; } }
         protected static TorCharacter HealTarget { get { return HealingManager.HealTarget; } }
@@ -78,73 +77,14 @@ namespace DarthBane.Class
                     new Action(delegate { return RunStatus.Failure; })));
         }
 
-
-        public Composite StopResting
+        protected static void StopMoving()
         {
-            get
-            {
-                return new Decorator(ret =>
-                    !Me.InCombat
-                    && Me.IsCasting
-                    && Me.HealthPercent > 90
-                    && (Me.Companion != null && Me.Companion.HealthPercent > 90),
-                    //&& DateTime.Now.Subtract(Me.CastTimeEnd).TotalSeconds > 5,
-                    new Action(ret => Buddy.Swtor.Movement.Move(Buddy.Swtor.MovementDirection.Forward, System.TimeSpan.FromMilliseconds(400))));
-            }
-        }
-
-        private static void StopMoving()
-        {
-            Buddy.Swtor.Movement.Stop(MovementDirection.Forward);
+            Movement.Stop(MovementDirection.Forward);
             Thread.Sleep(50);
-            Buddy.CommonBot.CommonBehaviors.MoveStop();
+            CommonBehaviors.MoveStop();
             Thread.Sleep(50);
-            Buddy.Swtor.Input.MoveStopAll();
-            Buddy.CommonBot.CommonBehaviors.MoveStop();
-        }
-
-        private static DateTime datLCL;
-        public static void MoveTo(TorCharacter theUnit, float dist, string Cast1 = "", string Cast2 = "", string Cast3 = "", string Cast4 = "")
-        {
-            if (theUnit == null)
-            {
-                Logger.Write("Null MoveTo:  Aborting.");
-                return;
-            }
-
-            if (theUnit == null) theUnit = Me.CurrentTarget;
-            if (theUnit == null || dist <= 0) return;
-            if (theUnit.Distance <= dist && theUnit.InLineOfSight) return;
-
-            try
-            {
-
-                StopMoving();           // To (try and) prevent 'The Chicken Dance'
-                datLCL = DateTime.Now;
-
-                if (theUnit.Distance > dist || !theUnit.InLineOfSight)
-                {
-                    Logger.Write("MoveTo: " + theUnit.Name + " Moving to within " + dist.ToString("0.0") + " from dist of " + theUnit.Distance.ToString("0.0") + " current LOS: " + theUnit.InLineOfSight.ToString());
-                    MoveResult MR = MoveResult.Moved;
-                    StopMoving();
-                    while ((MR != MoveResult.Failed && MR != MoveResult.PathGenerationFailed) && theUnit != null && DateTime.Now.Subtract(datLCL).TotalSeconds <= 15 && (theUnit.Distance > dist || !theUnit.InLineOfSight))
-                    {
-                        if (Cast1 != "") Spell.Cast(Cast1);
-                        if (Cast2 != "") Spell.Cast(Cast2);
-                        if (Cast3 != "") Spell.Cast(Cast3);
-                        if (Cast4 != "") Spell.Cast(Cast4);
-                        if (theUnit.Distance > dist || !theUnit.InLineOfSight)
-                        {
-                            MR = Buddy.Navigation.Navigator.MoveTo(theUnit.Position);
-                            Thread.Sleep(100);
-                        }
-                    }
-                    if (MR == MoveResult.Failed && MR == MoveResult.PathGenerationFailed) Logger.Write("Move Result: " + MR.ToString());
-                    StopMoving();
-                    StopMoving();
-                }
-            }
-            catch { }
+            Input.MoveStopAll();
+            CommonBehaviors.MoveStop();
         }
 
         public static Composite MoveTo(CommonBehaviors.Retrieval<Vector3> position, float range)

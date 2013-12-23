@@ -18,16 +18,17 @@ namespace DarthBane.Helpers
 {
     public static class Spell
     {
-        private static Buddy.Swtor.Objects.TorPlayer Me { get { return BuddyTor.Me; } }
+        private static TorPlayer Me { get { return BuddyTor.Me; } }
         public delegate TorCharacter UnitSelectionDelegate(object context);
         public delegate T Selection<out T>(object context);
-        public static List<ExpiringItem> BlackListedSpells = new List<ExpiringItem>();
+        private static readonly List<ExpiringItem> BlackListedSpells = new List<ExpiringItem>();
 
         public static Composite WaitForCast()
         {
             return new Decorator(ret => BuddyTor.Me.IsCasting,
                 new Action(ret => RunStatus.Success));
         }
+
         #region Cast - by name
 
         public static Composite Cast(string spell, Selection<bool> reqs = null)
@@ -106,7 +107,7 @@ namespace DarthBane.Helpers
             return
                 new Decorator(
                     ret => (reqs == null || reqs(ret)) && !Me.HasBuff(spell),
-                    Spell.Cast(spell, ret => Me, ret => true));
+                    Cast(spell, ret => Me, ret => true));
                     
         }
         #endregion

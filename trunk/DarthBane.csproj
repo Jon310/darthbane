@@ -59,6 +59,9 @@
     <Compile Include="Class\Mercenary\Bodyguard.cs" />
     <Compile Include="Class\Mercenary\Pyrotech.cs" />
     <Compile Include="Class\RotationBase.cs" />
+    <Compile Include="Class\Scoundrel\DirtyFighting.cs" />
+    <Compile Include="Class\Scoundrel\Sawbones.cs" />
+    <Compile Include="Class\Scoundrel\Scrapper.cs" />
     <Compile Include="Class\Sorcerer\Corruption.cs" />
     <Compile Include="Class\Sorcerer\Lightning.cs" />
     <Compile Include="DarthBane.Behaviors.cs" />
@@ -76,9 +79,7 @@
     <Compile Include="Managers\HealingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class\Scoundrel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
