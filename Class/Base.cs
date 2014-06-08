@@ -118,9 +118,12 @@ namespace DarthBane.Class
                        new SwitchArgument<CharacterClass>(CharacterClass.Agent,
                            new PrioritySelector(
                                CloseDistance(Distance.Ranged),
+                               Spell.Cast("Crouch"),
+                               Spell.Cast("Flash Bang", ret => Me.CurrentTarget.IsCasting),
+                               Spell.Cast("Debilitate", ret => Me.CurrentTarget.IsCasting),
                                Spell.Cast("Fragmentation Grenade", ret => Me.CurrentTarget.Distance <= Distance.Ranged && ShouldAOE(3, Distance.MeleeAoE)),
                                Spell.Cast("Corrosive Dart", ret => !Me.CurrentTarget.HasDebuff("Poisoned (Tech)")),
-                               Spell.Cast("Shiv", ret => Me.CurrentTarget.Distance <= Distance.Melee),
+                               Spell.Cast("Shiv"),
                                Spell.Cast("Explosive Probe"),
                                Spell.Cast("Snipe"),
                                Spell.Cast("Rifle Shot"))),

@@ -177,7 +177,7 @@ namespace DarthBane.Helpers
                             Thread.Sleep(100);
                         }
 
-                        Movement.Move(MovementDirection.Forward, TimeSpan.FromMilliseconds(1));
+                        Movement.Move(MovementDirection.Forward, TimeSpan.FromMilliseconds(5));
                         return RunStatus.Success;
                     }
 
