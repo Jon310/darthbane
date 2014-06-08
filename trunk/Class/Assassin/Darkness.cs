@@ -19,12 +19,6 @@ namespace DarthBane.Class.Assassin
             get
             {
                 return new PrioritySelector(
-                    new Decorator(ret => Me.CurrentTarget.Name.Contains("Companion") && !Blacklist.Contains(Me.CurrentTarget.Guid),
-                        new PrioritySelector(
-                            new Action(ret => Blacklist.Add(Me.CurrentTarget.Guid, BlacklistFlags.Kill, TimeSpan.FromSeconds(120))),
-                            new Action(ret => Me.ClearTarget()))),
-                    new Decorator(ret => needToStop(),
-                        new Action(ret => StopMoving())),
                     Spell.Buff("Dark Charge"),
                     Spell.Buff("Mark of Power"),
                     Rest.HandleRest,
@@ -38,10 +32,6 @@ namespace DarthBane.Class.Assassin
             get
             {
                 return new PrioritySelector(
-                    new Decorator(ret => Me.CurrentTarget.Name.Contains("Companion") && !Blacklist.Contains(Me.CurrentTarget.Guid),
-                        new PrioritySelector(
-                            new Action(ret => Blacklist.Add(Me.CurrentTarget.Guid, BlacklistFlags.Kill, TimeSpan.FromSeconds(120))),
-                            new Action(ret => Me.ClearTarget()))),
                     //Movement
                     CloseDistance(Distance.Melee),
 
@@ -70,7 +60,7 @@ namespace DarthBane.Class.Assassin
                     MedPack.UseItem(ret => Me.HealthPercent < 40),
                     Spell.Cast("Dark Ward", ret => Me.BuffCount("Dark Ward") <= 1 || Me.BuffTimeLeft("Dark Ward") < 3),
                     Spell.Cast("Unbreakable Will"),
-                    Spell.Cast("Overcharge Saber", ret => Me.HealthPercent <= 85),
+                    Spell.Cast("Overcharge Saber", ret => Me.HealthPercent <= 60),
                     Spell.Cast("Deflection", ret => Me.HealthPercent <= 60),
                     Spell.Cast("Force Shroud", ret => Me.HealthPercent <= 50),
                     Spell.Cast("Recklessness"),
@@ -90,6 +80,7 @@ namespace DarthBane.Class.Assassin
                     Spell.Cast("Jolt", ret => Me.CurrentTarget.IsCasting),
                     Spell.Cast("Electrocute", ret => Me.CurrentTarget.IsCasting || Me.HealthPercent < Me.CurrentTarget.HealthPercent),
                     Spell.Cast("Low Slash", ret => Me.CurrentTarget.IsCasting),
+                    Spell.Cast("Spike", ret => Me.CurrentTarget.IsCasting),
                     Spell.Cast("Force Lightning", ret => Me.BuffCount("Harnessed Darkness") == 3),
                     Spell.Cast("Wither"),
                     Spell.Cast("Discharge"),

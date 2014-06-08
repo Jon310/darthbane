@@ -79,6 +79,10 @@ namespace DarthBane.Class.Sorcerer
                     //Single Target Healing                  
                     Spell.Heal("Dark Heal", 35),
                     Spell.Heal("Dark Infusion", 80),
+
+                    Spell.Cast("Jolt", ret => Me.CurrentTarget.IsCasting),
+                    Spell.Cast("Electrocute", ret => Me.CurrentTarget.IsCasting),
+                    Spell.Cast("Shock", ret => Me.CurrentTarget.IsCasting),
                     
                     //Movement
                     CloseDistance(Distance.Ranged),

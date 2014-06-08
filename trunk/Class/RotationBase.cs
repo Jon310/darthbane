@@ -67,7 +67,7 @@ namespace DarthBane.Class
         {
             return new Decorator(ret => Me.CurrentTarget != null,
                 new PrioritySelector(
-                    new Decorator(ret => Me.CurrentTarget.Distance < range,
+                    new Decorator(ret => Me.CurrentTarget.Distance <= range,
                         new Action( delegate{
                             Navigator.MovementProvider.StopMovement();
                             return RunStatus.Failure;
@@ -77,7 +77,7 @@ namespace DarthBane.Class
                     new Action(delegate { return RunStatus.Failure; })));
         }
 
-        protected static void StopMoving()
+        public static void StopMoving()
         {
             Movement.Stop(MovementDirection.Forward);
             Thread.Sleep(50);
@@ -85,6 +85,7 @@ namespace DarthBane.Class
             Thread.Sleep(50);
             Input.MoveStopAll();
             CommonBehaviors.MoveStop();
+            Navigator.MovementProvider.StopMovement();
         }
 
         public static Composite MoveTo(CommonBehaviors.Retrieval<Vector3> position, float range)

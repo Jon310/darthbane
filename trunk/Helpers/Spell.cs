@@ -25,7 +25,7 @@ namespace DarthBane.Helpers
 
         public static Composite WaitForCast()
         {
-            return new Decorator(ret => BuddyTor.Me.IsCasting,
+            return new Decorator(ret => Me.IsCasting || Me.IsDead,
                 new Action(ret => RunStatus.Success));
         }
 

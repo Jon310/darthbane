@@ -47,6 +47,10 @@ namespace DarthBane.Class.Sorcerer
                     HealingManager.AcquireHealTargets,
                     Spell.WaitForCast(),
 
+                    Spell.Cast("Jolt", ret => Me.CurrentTarget.IsCasting),
+                    Spell.Cast("Electrocute", ret => Me.CurrentTarget.IsCasting),
+                    Spell.Cast("Shock", ret => Me.CurrentTarget.IsCasting),
+
                     Spell.Buff("Recklessness"),
                     Spell.Buff("Polarity Shift"),
                     Spell.Buff("Static Barrier", ret => !Me.HasBuff("Deionized")),

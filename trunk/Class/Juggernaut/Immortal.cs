@@ -62,7 +62,7 @@ namespace DarthBane.Class.Juggernaut
                     Spell.Cast("Force Scream"),
                     Spell.Cast("Crushing Blow"),
                     Spell.Cast("Backhand", ret => !Me.CurrentTarget.IsStunned),
-                    Spell.Cast("Vicious Throw", ret => Me.CurrentTarget.HealthPercent <= 30),
+                    Spell.Cast("Vicious Throw"),
                     Spell.Cast("Ravage"),
                     Spell.Cast("Vicious Slash", ret => Me.ActionPoints >= 11),
                     Spell.Cast("Assault"),
